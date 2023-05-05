@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class PersonDto {
     private Integer idPerson;
-    private String firstName, secondName, firstLastname, secondLastname, phone;
+    private String firstName, secondName, firstLastname, secondLastname, phone, email;
     private Date dateBirth;
 
     public Integer getIdPerson() {
@@ -53,6 +53,14 @@ public class PersonDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getDateBirth() {

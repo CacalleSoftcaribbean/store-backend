@@ -2,7 +2,7 @@ package com.backend.store.dto;
 
 public class UserDto {
     private Integer idUser;
-    private String email, password, token;
+    private String username, password, token;
     private PersonDto personDto;
 
     public Integer getIdUser() {
@@ -13,12 +13,12 @@ public class UserDto {
         this.idUser = idUser;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
