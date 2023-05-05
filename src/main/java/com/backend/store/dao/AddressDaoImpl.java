@@ -90,6 +90,8 @@ public class AddressDaoImpl implements AddressDao {
                     addressDto.getPersonDto().getIdPerson(),
                     addressDto.getAddress(),
                     addressDto.getCity(),
+                    addressDto.getCountry(),
+                    addressDto.getPostalCode(),
                     addressDto.getIdAddress()
             );
         } catch (Exception e) {

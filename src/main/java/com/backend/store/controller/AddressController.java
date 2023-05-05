@@ -16,7 +16,7 @@ public class AddressController {
     @Autowired
     private AddressFacade addressFacade;
 
-    @GetMapping("/address/selectAll")
+    @GetMapping("/address")
     public ResponseEntity<Message> selectAll(){
         Message message = new Message("1","Success", "");
         List<Map<String, Object>> list = null;
@@ -30,7 +30,7 @@ public class AddressController {
         return ResponseEntity.ok(message);
     }
 
-    @GetMapping("/address/selectId/{idAddress}")
+    @GetMapping("/address/{idAddress}")
     public ResponseEntity<Message> selectId(@PathVariable Integer idAddress){
         Message message = new Message("1","Success", "");
         AddressDto address = new AddressDto();
@@ -45,7 +45,7 @@ public class AddressController {
         return ResponseEntity.ok(message);
     }
 
-    @PostMapping("/address/insertAddress")
+    @PostMapping("/address")
     public ResponseEntity<Message> insert(@RequestBody AddressDto addressDto) {
         Message message = new Message("1","Successfully created", "");
         try {
@@ -58,7 +58,7 @@ public class AddressController {
         return ResponseEntity.ok(message);
     }
 
-    @PostMapping("/address/update")
+    @PutMapping("/address")
     public ResponseEntity<Message> update(@RequestBody AddressDto addressDto){
         Message message = new Message("1","Successfully updated", "");
         try {
@@ -71,7 +71,7 @@ public class AddressController {
         return ResponseEntity.ok(message);
     }
 
-    @PostMapping("/address/delete")
+    @DeleteMapping("/address")
     public ResponseEntity<Message> delete(@RequestBody AddressDto addressDto){
         Message message = new Message("1","Successfully eliminated", "");
         try {
