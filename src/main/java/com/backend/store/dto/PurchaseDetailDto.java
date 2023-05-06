@@ -1,10 +1,9 @@
 package com.backend.store.dto;
 
-public class PurchaseDetailsDto {
-    private Integer idPurchaseDetail;
+public class PurchaseDetailDto {
+    private Integer idPurchaseDetail, quantity;
     private ProductDto productDto;
     private PurchaseDto purchaseDto;
-    private Double quantity;
 
     public Integer getIdPurchaseDetail() {
         return idPurchaseDetail;
@@ -30,11 +29,11 @@ public class PurchaseDetailsDto {
         this.purchaseDto = purchaseDto;
     }
 
-    public Double getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }
