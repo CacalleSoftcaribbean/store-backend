@@ -44,7 +44,8 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public PersonDto selectId(PersonDto personDto) throws DaoException {
-        String SQL = "SELECT id_person, " +
+        String SQL = "SELECT  rol_id, " +
+                        "id_person, " +
                         "first_name, " +
                         "second_name, " +
                         "first_lastname, " +
@@ -67,7 +68,8 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public PersonDto insert(PersonDto personDto) throws DaoException {
-        String SQL = "INSERT INTO persons(first_name, " +
+        String SQL = "INSERT INTO persons(rol_id, " +
+                        "first_name, " +
                         "second_name, " +
                         "first_lastname, " +
                         "second_lastname, " +
@@ -80,6 +82,7 @@ public class PersonDaoImpl implements PersonDao {
             PreparedStatement ps = connection.prepareStatement(SQL, new String[]{ "id_person" });
             DaoUtil.setPrepareStatement(ps,
                     new Object[] {
+                            personDto.getRolDto().getIdRol(),
                             personDto.getFirstName(),
                             personDto.getSecondName(),
                             personDto.getFirstLastname(),
@@ -97,7 +100,8 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public void update(PersonDto personDto) throws DaoException {
-        String SQL = "UPDATE persons SET first_name=?, " +
+        String SQL = "UPDATE persons SET rol_id=? " +
+                        "first_name=?, " +
                         "second_name=?, " +
                         "first_lastname=?, " +
                         "second_lastname=?, " +
@@ -107,6 +111,7 @@ public class PersonDaoImpl implements PersonDao {
                         "WHERE id_person=?;";
         try {
             this.jdbcTemplate.update(SQL,
+                    personDto.getRolDto().getIdRol(),
                     personDto.getFirstName(),
                     personDto.getSecondName(),
                     personDto.getFirstLastname(),

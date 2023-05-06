@@ -17,6 +17,10 @@ public class PurchaseMapper implements RowMapper<PurchaseDto> {
         personDto.setIdPerson(rs.getInt("person_id"));
         purchaseDto.setPersonDto(personDto);
         purchaseDto.setDatePurchase(rs.getDate("date_purchase"));
+        purchaseDto.setStatus(rs.getString("status"));
+        purchaseDto.setTypePayment(rs.getString("type_payment"));
+        purchaseDto.setIdTransaction(rs.getString("id_transaction"));
+        purchaseDto.setReference(rs.getString("reference"));
         return purchaseDto;
     }
 }

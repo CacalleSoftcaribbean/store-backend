@@ -25,7 +25,11 @@ public class PurchaseDaoImpl implements PurchaseDao{
     public List<Map<String, Object>> selectAll() throws DaoException {
         String SQL = "SELECT id_purchase, " +
                         "person_id, " +
-                        "date_purchase " +
+                        "date_purchase, " +
+                        "status, " +
+                        "type_payment, " +
+                        "id_transaction, " +
+                        "reference " +
                         "FROM purchases;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
@@ -37,9 +41,12 @@ public class PurchaseDaoImpl implements PurchaseDao{
     @Override
     public PurchaseDto selectId(PurchaseDto purchaseDto) throws DaoException {
         String SQL = "SELECT id_purchase, " +
-                        "person_id, " +
-                        "date_purchase " +
-                        "FROM purchases " +
+                            "person_id, " +
+                            "date_purchase, " +
+                            "status, " +
+                            "type_payment, " +
+                            "id_transaction, " +
+                            "reference " +
                         "WHERE id_purchase=?;";
         PurchaseDto result = null;
         try {
@@ -54,11 +61,21 @@ public class PurchaseDaoImpl implements PurchaseDao{
 
     @Override
     public void insert(PurchaseDto purchaseDto) throws DaoException {
-        String SQL = "INSERT INTO purchases(person_id, date_purchase) VALUES (?, ?);";
+        String SQL = "INSERT INTO purchases(person_id, " +
+                        "date_purchase, " +
+                        "status, " +
+                        "type_payment, " +
+                        "id_transaction, " +
+                        "reference) " +
+                        "VALUES (?, ?, ?, ?, ?, ?);";
         try {
             this.jdbcTemplate.update(SQL,
                     purchaseDto.getPersonDto().getIdPerson(),
-                    UtilDate.toSqlDate(purchaseDto.getDatePurchase())
+                    UtilDate.toSqlDate(purchaseDto.getDatePurchase()),
+                    purchaseDto.getStatus(),
+                    purchaseDto.getTypePayment(),
+                    purchaseDto.getIdTransaction(),
+                    purchaseDto.getReference()
             );
         } catch (Exception e) {
             throw new DaoException(e);
@@ -70,11 +87,19 @@ public class PurchaseDaoImpl implements PurchaseDao{
         String SQL = "UPDATE purchases SET " +
                         "person_id=?, " +
                         "date_purchase=? " +
+                        "status=?, " +
+                        "type_payment=?, " +
+                        "id_transaction=?, " +
+                        "reference=?, " +
                         "WHERE id_purchase=?;";
         try {
             this.jdbcTemplate.update(SQL,
                     purchaseDto.getPersonDto().getIdPerson(),
                     UtilDate.toSqlDate(purchaseDto.getDatePurchase()),
+                    purchaseDto.getStatus(),
+                    purchaseDto.getTypePayment(),
+                    purchaseDto.getIdTransaction(),
+                    purchaseDto.getReference(),
                     purchaseDto.getIdPurchase()
             );
         } catch (Exception e) {

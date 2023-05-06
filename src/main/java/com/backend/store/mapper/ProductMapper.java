@@ -16,11 +16,13 @@ public class ProductMapper implements RowMapper<ProductDto> {
         categoryDto.setIdCategory(rs. getInt("category_id"));
         productDto.setCategoryDto(categoryDto);
         productDto.setName(rs.getString("name"));
+        productDto.setImage(rs.getString("image"));
         productDto.setDescription(rs.getString("description"));
         productDto.setPrice(rs.getDouble("price"));
         productDto.setStock(rs.getInt("stock"));
         productDto.setBrand(rs.getString("brand"));
         productDto.setModel(rs.getString("model"));
+        productDto.setStatus(rs.getString("status"));
         return productDto;
     }
 }

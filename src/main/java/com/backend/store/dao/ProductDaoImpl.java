@@ -23,11 +23,13 @@ public class ProductDaoImpl implements ProductDao {
         String SQL = "SELECT id_product, " +
                         "category_id, " +
                         "name, " +
+                        "image," +
                         "description, " +
                         "price, " +
                         "stock, " +
                         "brand, " +
-                        "model " +
+                        "model, " +
+                        "status " +
                         "FROM products;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
@@ -41,11 +43,13 @@ public class ProductDaoImpl implements ProductDao {
         String SQL = "SELECT id_product, " +
                         "category_id, " +
                         "name, " +
+                        "image," +
                         "description, " +
                         "price, " +
                         "stock, " +
                         "brand, " +
-                        "model " +
+                        "model, " +
+                        "status " +
                         "FROM products " +
                         "WHERE id_product=?;";
         ProductDto result = null;
@@ -63,21 +67,25 @@ public class ProductDaoImpl implements ProductDao {
     public void insert(ProductDto productDto) throws DaoException {
         String SQL = "INSERT INTO products(category_id, " +
                         "name, " +
+                        "image, " +
                         "description, " +
                         "price, " +
                         "stock, " +
                         "brand, " +
-                        "model) " +
+                        "model, " +
+                        "status) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?);";
         try {
             this.jdbcTemplate.update(SQL,
                     productDto.getCategoryDto().getIdCategory(),
                     productDto.getName(),
+                    productDto.getImage(),
                     productDto.getDescription(),
                     productDto.getPrice(),
                     productDto.getStock(),
                     productDto.getBrand(),
-                    productDto.getModel()
+                    productDto.getModel(),
+                    productDto.getStatus()
             );
         } catch (Exception e) {
             throw new DaoException(e);
@@ -88,21 +96,25 @@ public class ProductDaoImpl implements ProductDao {
     public void update(ProductDto productDto) throws DaoException {
         String SQL = "UPDATE products SET category_id=?, " +
                         "name=?, " +
+                        "image=?, " +
                         "description=?, " +
                         "price=?, " +
                         "stock=?, " +
                         "brand=?, " +
-                        "model=? " +
+                        "model=?, " +
+                        "status=?, " +
                         "WHERE id_product=?;";
         try {
             this.jdbcTemplate.update(SQL,
                     productDto.getCategoryDto().getIdCategory(),
                     productDto.getName(),
+                    productDto.getImage(),
                     productDto.getDescription(),
                     productDto.getPrice(),
                     productDto.getStock(),
                     productDto.getBrand(),
                     productDto.getModel(),
+                    productDto.getStatus(),
                     productDto.getIdProduct()
             );
         } catch (Exception e) {

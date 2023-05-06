@@ -25,7 +25,8 @@ public class PurchaseDetailDaoImpl implements PurchaseDetailDao {
         String SQL = "SELECT id_purchase_detail, " +
                         "product_id, " +
                         "purchase_id, " +
-                        "quantity " +
+                        "quantity, " +
+                        "price " +
                         "FROM purchases_details;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
@@ -39,8 +40,9 @@ public class PurchaseDetailDaoImpl implements PurchaseDetailDao {
         String SQL = "SELECT id_purchase_detail, " +
                         "product_id, " +
                         "purchase_id, " +
-                        "quantity FROM " +
-                        "purchases_details " +
+                        "quantity, " +
+                        "price" +
+                        "FROM purchases_details " +
                         "WHERE id_purchase_detail=?;";
         PurchaseDetailDto result = null;
         try {
@@ -57,13 +59,15 @@ public class PurchaseDetailDaoImpl implements PurchaseDetailDao {
     public void insert(PurchaseDetailDto purchaseDetailDto) throws DaoException {
         String SQL = "INSERT INTO purchases_details(product_id, " +
                         "purchase_id, " +
-                        "quantity) " +
+                        "quantity, " +
+                        "price) " +
                         "VALUES (?, ?, ?);";
         try {
             this.jdbcTemplate.update(SQL,
                     purchaseDetailDto.getProductDto().getIdProduct(),
                     purchaseDetailDto.getPurchaseDto().getIdPurchase(),
-                    purchaseDetailDto.getQuantity()
+                    purchaseDetailDto.getQuantity(),
+                    purchaseDetailDto.getPrice()
             );
         } catch (Exception e) {
             throw new DaoException(e);
@@ -74,13 +78,15 @@ public class PurchaseDetailDaoImpl implements PurchaseDetailDao {
     public void update(PurchaseDetailDto purchaseDetailDto) throws DaoException {
         String SQL = "UPDATE purchases_details SET product_id=?, " +
                         "purchase_id=?, " +
-                        "quantity=? " +
+                        "quantity=?, " +
+                        "price=?" +
                         "WHERE id_purchase_detail=?;";
         try {
             this.jdbcTemplate.update(SQL,
                     purchaseDetailDto.getProductDto().getIdProduct(),
                     purchaseDetailDto.getPurchaseDto().getIdPurchase(),
                     purchaseDetailDto.getQuantity(),
+                    purchaseDetailDto.getPrice(),
                     purchaseDetailDto.getIdPurchaseDetail()
             );
         } catch (Exception e) {

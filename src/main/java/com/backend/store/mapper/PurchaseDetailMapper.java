@@ -20,6 +20,7 @@ public class PurchaseDetailMapper implements RowMapper<PurchaseDetailDto> {
         purchaseDto.setIdPurchase(rs.getInt("purchase_id"));
         purchaseDetailDto.setPurchaseDto(purchaseDto);
         purchaseDetailDto.setQuantity(rs.getInt("quantity"));
+        purchaseDetailDto.setPrice(rs.getDouble("price"));
         return purchaseDetailDto;
     }
 }

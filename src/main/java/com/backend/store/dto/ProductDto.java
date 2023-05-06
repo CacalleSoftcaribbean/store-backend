@@ -2,7 +2,7 @@ package com.backend.store.dto;
 
 public class ProductDto {
     private Integer idProduct;
-    private String name, description, brand, model, image;
+    private String name, description, brand, model, image, status;
     private Double price;
     private Integer stock;
     private CategoryDto categoryDto;
@@ -77,5 +77,13 @@ public class ProductDto {
 
     public void setCategoryDto(CategoryDto categoryDto) {
         this.categoryDto = categoryDto;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
