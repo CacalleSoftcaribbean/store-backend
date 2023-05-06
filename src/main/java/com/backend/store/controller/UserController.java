@@ -44,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok(message);
     }
 
-    @PostMapping("/address")
+    @PostMapping("/user")
     public ResponseEntity<Message> insert(@RequestBody UserDto userDto) {
         Message message = new Message("1","Successfully created", "");
         try {
@@ -57,7 +57,7 @@ public class UserController {
         return ResponseEntity.ok(message);
     }
 
-    @PutMapping("/address")
+    @PutMapping("/user")
     public ResponseEntity<Message> update(@RequestBody UserDto userDto){
         Message message = new Message("1","Successfully updated", "");
         try {
@@ -70,7 +70,7 @@ public class UserController {
         return ResponseEntity.ok(message);
     }
 
-    @DeleteMapping("/address")
+    @DeleteMapping("/user")
     public ResponseEntity<Message> delete(@RequestBody UserDto userDto){
         Message message = new Message("1","Successfully eliminated", "");
         try {
