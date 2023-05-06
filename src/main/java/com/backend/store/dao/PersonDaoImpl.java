@@ -27,6 +27,7 @@ public class PersonDaoImpl implements PersonDao {
     @Override
     public List<Map<String, Object>> selectAll() throws DaoException {
         String SQL = "SELECT id_person, " +
+                        "rol_id, " +
                         "first_name, " +
                         "second_name, " +
                         "first_lastname, " +
