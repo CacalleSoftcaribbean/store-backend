@@ -4,9 +4,11 @@ import com.backend.store.date.UtilDate;
 import com.backend.store.dto.PersonDto;
 import com.backend.store.exceptions.DaoException;
 import com.backend.store.mapper.PersonMapper;
+import com.backend.store.util.DaoUtil;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -64,7 +66,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public void insert(PersonDto personDto) throws DaoException {
+    public PersonDto insert(PersonDto personDto) throws DaoException {
         String SQL = "INSERT INTO persons(first_name, " +
                         "second_name, " +
                         "first_lastname, " +
@@ -73,19 +75,24 @@ public class PersonDaoImpl implements PersonDao {
                         "email, " +
                         "date_birth) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?);";
-        try {
-            this.jdbcTemplate.update(SQL,
-                    personDto.getFirstName(),
-                    personDto.getSecondName(),
-                    personDto.getFirstLastname(),
-                    personDto.getSecondLastname(),
-                    personDto.getPhone(),
-                    personDto.getEmail(),
-                    UtilDate.toSqlDate(personDto.getDateBirth())
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(SQL, new String[]{ "id_person" });
+            DaoUtil.setPrepareStatement(ps,
+                    new Object[] {
+                            personDto.getFirstName(),
+                            personDto.getSecondName(),
+                            personDto.getFirstLastname(),
+                            personDto.getSecondLastname(),
+                            personDto.getPhone(),
+                            personDto.getEmail(),
+                            UtilDate.toSqlDate(personDto.getDateBirth())
+                    }
             );
-        } catch (Exception e) {
-            throw new DaoException(e);
-        }
+            return ps;
+        }, keyHolder);
+        personDto.setIdPerson(keyHolder.getKey().intValue());
+        return personDto;
     }
 
     @Override

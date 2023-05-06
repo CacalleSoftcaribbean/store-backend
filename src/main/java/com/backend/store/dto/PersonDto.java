@@ -6,6 +6,7 @@ public class PersonDto {
     private Integer idPerson;
     private String firstName, secondName, firstLastname, secondLastname, phone, email;
     private Date dateBirth;
+    private RolDto rolDto;
 
     public Integer getIdPerson() {
         return idPerson;
@@ -69,5 +70,13 @@ public class PersonDto {
 
     public void setDateBirth(Date dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public RolDto getRolDto() {
+        return rolDto;
+    }
+
+    public void setRolDto(RolDto rolDto) {
+        this.rolDto = rolDto;
     }
 }

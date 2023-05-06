@@ -9,7 +9,7 @@ import java.util.Map;
 public interface PersonDao {
     public List<Map<String, Object>> selectAll() throws DaoException;
     public PersonDto selectId(PersonDto personDto) throws DaoException;
-    public void insert(PersonDto personDto) throws DaoException;
+    public PersonDto insert(PersonDto personDto) throws DaoException;
     public void update(PersonDto personDto) throws  DaoException;
     public void delete(PersonDto personDto) throws DaoException;
 }

@@ -5,6 +5,7 @@ import java.sql.Date;
 public class PurchaseDto {
     private Integer idPurchase;
     private Date datePurchase;
+    private String status, typePayment, idTransaction, refrence;
     private PersonDto personDto;
 
     public Integer getIdPurchase() {
@@ -21,6 +22,38 @@ public class PurchaseDto {
 
     public void setDatePurchase(Date datePurchase) {
         this.datePurchase = datePurchase;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTypePayment() {
+        return typePayment;
+    }
+
+    public void setTypePayment(String typePayment) {
+        this.typePayment = typePayment;
+    }
+
+    public String getIdTransaction() {
+        return idTransaction;
+    }
+
+    public void setIdTransaction(String idTransaction) {
+        this.idTransaction = idTransaction;
+    }
+
+    public String getRefrence() {
+        return refrence;
+    }
+
+    public void setRefrence(String refrence) {
+        this.refrence = refrence;
     }
 
     public PersonDto getPersonDto() {

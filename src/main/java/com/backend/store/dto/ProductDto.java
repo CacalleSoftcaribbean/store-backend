@@ -2,7 +2,7 @@ package com.backend.store.dto;
 
 public class ProductDto {
     private Integer idProduct;
-    private String name, description, brand, model;
+    private String name, description, brand, model, image;
     private Double price;
     private Integer stock;
     private CategoryDto categoryDto;
@@ -45,6 +45,14 @@ public class ProductDto {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Double getPrice() {
