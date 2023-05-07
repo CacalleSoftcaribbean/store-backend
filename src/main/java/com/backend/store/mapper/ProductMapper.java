@@ -22,7 +22,7 @@ public class ProductMapper implements RowMapper<ProductDto> {
         productDto.setStock(rs.getInt("stock"));
         productDto.setBrand(rs.getString("brand"));
         productDto.setModel(rs.getString("model"));
-        productDto.setStatus(rs.getString("status"));
+        productDto.setStatus(rs.getInt("status"));
         return productDto;
     }
 }

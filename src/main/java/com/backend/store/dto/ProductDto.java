@@ -1,8 +1,8 @@
 package com.backend.store.dto;
 
 public class ProductDto {
-    private Integer idProduct;
-    private String name, description, brand, model, image, status;
+    private Integer idProduct, status;
+    private String name, description, brand, model, image;
     private Double price;
     private Integer stock;
     private CategoryDto categoryDto;
@@ -79,11 +79,11 @@ public class ProductDto {
         this.categoryDto = categoryDto;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

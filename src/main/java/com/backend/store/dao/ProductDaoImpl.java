@@ -74,7 +74,7 @@ public class ProductDaoImpl implements ProductDao {
                         "brand, " +
                         "model, " +
                         "status) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?);";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             this.jdbcTemplate.update(SQL,
                     productDto.getCategoryDto().getIdCategory(),
