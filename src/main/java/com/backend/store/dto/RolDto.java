@@ -1,8 +1,8 @@
 package com.backend.store.dto;
 
 public class RolDto {
-    private Integer idRol;
-    private String name, description, status;
+    private Integer idRol, status;
+    private String name, description;
 
     public Integer getIdRol() {
         return idRol;
@@ -28,11 +28,11 @@ public class RolDto {
         this.description = description;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

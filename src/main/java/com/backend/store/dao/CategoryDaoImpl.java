@@ -23,7 +23,8 @@ public class CategoryDaoImpl implements CategoryDao {
         String SQL = "SELECT id_category, " +
                         "name, " +
                         "description " +
-                        "FROM categories;";
+                        "FROM categories " +
+                        "ORDER BY id_category ASC;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
         } catch (Exception e) {

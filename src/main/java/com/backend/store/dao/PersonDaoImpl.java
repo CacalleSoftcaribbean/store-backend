@@ -26,16 +26,20 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public List<Map<String, Object>> selectAll() throws DaoException {
-        String SQL = "SELECT id_person, " +
-                        "rol_id, " +
-                        "first_name, " +
-                        "second_name, " +
-                        "first_lastname, " +
-                        "second_lastname, " +
-                        "phone, " +
-                        "email, " +
-                        "date_birth " +
-                        "FROM persons;";
+        String SQL = "SELECT p.id_person, " +
+                        "p.rol_id, " +
+                        "p.first_name, " +
+                        "p.second_name, " +
+                        "p.first_lastname, " +
+                        "p.second_lastname, " +
+                        "p.phone, " +
+                        "p.email, " +
+                        "p.date_birth, " +
+                        "r.name	" +
+                        "FROM persons AS p " +
+                        "INNER JOIN roles AS r " +
+                        "ON r.id_rol = p.rol_id " +
+                        "ORDER BY p.id_person ASC;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
         } catch (Exception e) {
@@ -77,7 +81,7 @@ public class PersonDaoImpl implements PersonDao {
                         "phone, " +
                         "email, " +
                         "date_birth) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?);";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(SQL, new String[]{ "id_person" });

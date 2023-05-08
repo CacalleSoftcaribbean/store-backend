@@ -14,7 +14,7 @@ public class RolMapper implements RowMapper<RolDto> {
         rolDto.setIdRol(rs.getInt("id_rol"));
         rolDto.setName(rs.getString("name"));
         rolDto.setDescription(rs.getString("description"));
-        rolDto.setStatus(rs.getString("status"));
+        rolDto.setStatus(rs.getInt("status"));
         return rolDto;
     }
 }

@@ -22,12 +22,17 @@ public class UserDaoImpl implements  UserDao {
 
     @Override
     public List<Map<String, Object>> selectAll() throws DaoException {
-        String SQL = "SELECT id_user, " +
-                        "person_id, " +
-                        "username, " +
-                        "password, " +
-                        "token " +
-                        "FROM users;";
+        String SQL = "SELECT u.id_user, " +
+                        "u.person_id, " +
+                        "u.username, " +
+                        "u.password, " +
+                        "u.token, " +
+                        "r.id_rol " +
+                        "FROM users AS u " +
+                        "INNER JOIN persons AS p " +
+                        "ON p.id_person = u.person_id " +
+                        "INNER JOIN roles AS r " +
+                        "ON r.id_rol = p.rol_id;";
         try {
             return this.jdbcTemplate.queryForList(SQL);
         } catch (Exception e) {

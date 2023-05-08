@@ -30,7 +30,8 @@ public class ProductDaoImpl implements ProductDao {
                         "brand, " +
                         "model, " +
                         "status " +
-                        "FROM products;";
+                        "FROM products " +
+                        "ORDER BY id_product ASC";
         try {
             return this.jdbcTemplate.queryForList(SQL);
         } catch (Exception e) {
@@ -102,8 +103,8 @@ public class ProductDaoImpl implements ProductDao {
                         "stock=?, " +
                         "brand=?, " +
                         "model=?, " +
-                        "status=?, " +
-                        "WHERE id_product=?;";
+                        "status=? " +
+                        "WHERE id_product=?; ";
         try {
             this.jdbcTemplate.update(SQL,
                     productDto.getCategoryDto().getIdCategory(),
