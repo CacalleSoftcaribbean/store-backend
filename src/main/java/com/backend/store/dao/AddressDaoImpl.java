@@ -37,13 +37,13 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public AddressDto selectId(AddressDto addressDto) throws DaoException {
         String SQL = "SELECT id_address, " +
-                "person_id, " +
-                "address, " +
-                "city, " +
-                "country, " +
-                "postal_code " +
-                "FROM addresses " +
-                "WHERE id_address=?;";
+                        "person_id, " +
+                        "address, " +
+                        "city, " +
+                        "country, " +
+                        "postal_code " +
+                        "FROM addresses " +
+                        "WHERE id_address=?;";
         AddressDto result = null;
         try {
             result = this.jdbcTemplate.queryForObject(SQL, new AddressMapper(), addressDto.getIdAddress());

@@ -47,7 +47,8 @@ public class PurchaseDaoImpl implements PurchaseDao{
                             "type_payment, " +
                             "id_transaction, " +
                             "reference " +
-                        "WHERE id_purchase=?;";
+                            "FROM purchases " +
+                            "WHERE id_purchase=?;";
         PurchaseDto result = null;
         try {
             result = this.jdbcTemplate.queryForObject(SQL, new PurchaseMapper(), purchaseDto.getIdPurchase());
